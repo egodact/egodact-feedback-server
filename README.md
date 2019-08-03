@@ -4,9 +4,9 @@ The server behind `https://feedback.egodact.com` that's used internally to proce
 ## Setup
 Provide an `.env` file with the following environment variables:
 ```
-MAILER_HOST=mail.example.com
+MAILER_HOST=smtp.example.com
 MAILER_USER=user@example.com
-MAILER_PASSWORD=password
+MAILER_USER_PASSWORD=password
 ```
 
 ## Sending feedback

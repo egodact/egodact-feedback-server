@@ -1,8 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const dotenv = require('dotenv');
-
-dotenv.config();
+const sendEmail = require('./lib/sendEmail');
 
 const app = express();
 
@@ -16,7 +14,7 @@ app.post('/feedback/create', async (req, res) => {
   } = req.body;
 
   if (!feedback) {
-    return res.json({
+    return res.status(400).json({
       error_description: 'No feedback provided.'
     });
   }
