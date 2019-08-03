@@ -4,6 +4,7 @@
   "description": "Egodact feedback server",
   "main": "index.js",
   "scripts": {
+    "deploy": "CLOUDSDK_ACTIVE_CONFIG_NAME=egodact-feedback-server gcloud app deploy",
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
