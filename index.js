@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const isValidEmail = require('./lib/isValidEmail');
 const sendEmail = require('./lib/sendEmail');
 
 const app = express();
@@ -8,10 +9,7 @@ app.use(cors());
 app.use(express.json());
 
 app.post('/feedback/create', async (req, res) => {
-  const {
-    feedback,
-    sender_email: senderEmail
-  } = req.body;
+  const { feedback, sender_email: senderEmail } = req.body;
 
   if (!feedback) {
     return res.status(400).json({
@@ -19,9 +17,7 @@ app.post('/feedback/create', async (req, res) => {
     });
   }
 
-  const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
-  const senderEmailIsValid = senderEmail && EMAIL_REGEX.test(senderEmail);
+  const senderEmailIsValid = isValidEmail(senderEmail);
 
   await sendEmail({
     feedback,
@@ -31,7 +27,8 @@ app.post('/feedback/create', async (req, res) => {
   if (senderEmail && !senderEmailIsValid) {
     return res.json({
       success: true,
-      warning_description: 'Note: the sender e-mail address was excluded from your feedback since it was invalid.'
+      warning_description:
+        'Note: the sender e-mail address was excluded from your feedback since it was invalid.'
     });
   }
 
