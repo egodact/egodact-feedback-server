@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const sendNotFoundResponse = require('./lib/sendNotFoundResponse');
 const isValidEmail = require('./lib/isValidEmail');
 const sendEmail = require('./lib/sendEmail');
 
@@ -7,6 +8,8 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+
+app.get('/*', (req, res) => sendNotFoundResponse(res));
 
 app.post('/feedback/create', async (req, res) => {
   const { feedback, sender_email: senderEmail } = req.body;
@@ -36,6 +39,8 @@ app.post('/feedback/create', async (req, res) => {
     success: true
   });
 });
+
+app.post('/*', (req, res) => sendNotFoundResponse(res));
 
 const PORT = 8080 || process.env.PORT;
 app.listen(PORT, () => {
