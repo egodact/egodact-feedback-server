@@ -1,0 +1,19 @@
+{
+  "name": "egodact-feedback-server",
+  "version": "1.0.0",
+  "description": "Egodact feedback server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/egodact/egodact-feedback-server.git"
+  },
+  "author": "Rafael Klaessen <rafaelklaessen.nl@gmail.com> (https://rafaelklaessen.nl)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/egodact/egodact-feedback-server/issues"
+  },
+  "homepage": "https://github.com/egodact/egodact-feedback-server#readme"
+}
